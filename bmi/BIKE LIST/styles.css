@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: 'poppins'sans-serif;
+    box-sizing: border-box;
+}
+body{
+    background: url(img.webp) no-repeat center center/cover;
+    min-height: 100vh;
+}
+#container{
+    width: 400px;
+    height: 250px;
+    border: 2px solid blanchedalmond;
+    display: flex;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #fff;
+    margin-left: 50px;
+    color: #fff;
+    margin-top: 100px;
+    backdrop-filter: blur(20px);
+    padding: 20px;
+    align-items: center;
+    line-height: 50px;
+}
+
+.font{
+    text-align: center;
+    color: #c21616;
+    font-size: 3rem;
+    margin-left: 30%;
+}
+
+.btn{
+    width: 90%;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color:#c21616;
+    }
+#container select{
+    width: 90%;
+    padding: 10px 20px;
+    margin: 10px;
+    border: none;
+    border-radius: 10px;
+}
+#container label{
+    font-size: 1.4rem;
+}
+.bike-info{
+    display: flex;
+}
+#para{
+    margin-top: 250px;
+    line-height: 50px;
+    color: #fff;
+}
+.buy-btn{
+    padding: 8px 20px;
+    background-color: #c21616;
+    border: none;
+    border-radius: 5px;
+}
+.container-fluide{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 150px;
+}
+@media screen and (min-width: 768px){
+    .container-fluide{
+        margin-top: 150px;
+    }
+    #container{
+        width: 200px;
+        height: 200px;
+        border: 2px solid blanchedalmond;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px #fff;
+        color: #fff;
+        backdrop-filter: blur(20px);
+        padding: 20px;
+        align-items: center;
+        line-height: 50px;
+    }
+}

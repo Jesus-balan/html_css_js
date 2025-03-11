@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+<p id="demo"></p>
+
+<script>
+    const cars = ["BMW", "Volvo", "Saab", "Ford"];
+    let len = cars.length;
+    let text = "";
+
+    for (let i = 0; i < len; i++) {
+        text += cars[i] + "<br>";
+
+        // Add a new element after the second iteration
+        if (i === 1) { // Corrected index from 4 to 1
+            cars.push("Toyota");
+            len++; // Increase length to accommodate the new element
+        }
+
+        // Delete an element after the third iteration
+        if (i === 1) { // Corrected index from 2 to 1
+            cars.splice(2, 1); // Remove the element at index 2 (Saab)
+            len--; // Decrease length after removal
+        }
+    }
+
+    document.getElementById("demo").innerHTML = text;
+</script>
+
+</body>
+</html>
+

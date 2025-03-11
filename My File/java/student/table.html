@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Student Form</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+        
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+        .delete-btn, .edit-btn {
+            color: red;
+            cursor: pointer;
+            margin-left: 5px;
+        }
+        .edit-btn {
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Advanced Student Form</h2>
+<form id="student-form" onsubmit="addOrUpdateStudent(event)">
+    <label for="student-name">Name:</label>
+    <input type="text" id="student-name" required>
+    <label for="student-age">Age:</label>
+    <input type="number" id="student-age" required>
+    <label for="student-grade">Grade:</label>
+    <input type="text" id="student-grade" required>
+    <label for="student-email">Gmail:</label>
+    <input type="email" id="student-email" required pattern=".+@gmail\.com">
+    <label for="student-gender">Gender:</label>
+    <select id="student-gender" required>
+        <option value="">Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+    </select>
+    <input type="hidden" id="student-index">
+    <button type="submit">Add Student</button>
+</form>
+
+<table id="student-table">
+    <thead>
+        <tr>
+            <th onclick="sortTabl(0)">Name</th>
+            <th onclick="sortTable(1)">Age</th>
+            <th onclick="sortTable(2)">Grade</th>
+            <th onclick="sortTable(3)">Gmail</th>
+            <th onclick="sortTable(4)">Gender</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Student entries will go here -->
+    </tbody>
+</table>
+
+<script>
+    var studentTable = document.getElementById("student-table").getElementsByTagName('tbody')[0];
+    var studentNameInput = document.getElementById("student-name");
+    var studentAgeInput = document.getElementById("student-age");
+    var studentGradeInput = document.getElementById("student-grade");
+    var studentEmailInput = document.getElementById("student-email");
+    var studentGenderInput = document.getElementById("student-gender");
+    var studentIndexInput = document.getElementById("student-index");
+
+    function addOrUpdateStudent(event) {
+        event.preventDefault(); // Prevent form submission
+
+        var studentName = studentNameInput.value.trim();
+        var studentAge = studentAgeInput.value.trim();
+        var studentGrade = studentGradeInput.value.trim();
+        var studentEmail = studentEmailInput.value.trim();
+        var studentGender = studentGenderInput.value.trim();
+        var studentIndex = studentIndexInput.value;
+
+        if (studentName === "" || studentAge === "" || studentGrade === "" || studentEmail === "" || studentGender === "") {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        if (studentIndex === "") {
+            var row = studentTable.insertRow();
+        } else {
+            var row = studentTable.rows[studentIndex];
+            row.innerHTML = ''; // Clear existing row content
+        }
+
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);  
+        var cell5 = row.insertCell(4);
+        var cell6 = row.insertCell(5);
+
+         cell1.textContent = studentName;
+        cell2.textContent = studentAge;
+        cell3.textContent = studentGrade;
+        cell4.textContent = studentEmail;
+        cell5.textContent = studentGender;
+        cell6.innerHTML = "<span class='edit-btn' onclick='editStudent(event)'>edit</span><span class='delete-btn' onclick='deleteStudent(event)'>delete</span>";
+
+        clearForm();
+    }
+
+    function editStudent(event) {
+        var row = event.target.parentElement.parentElement;
+        studentIndexInput.value = row.rowIndex - 1;
+        console.log(studentIndexInput);
+        console.log(row.rowIndex);
+        studentNameInput.value = row.cells[0].textContent;
+        studentAgeInput.value = row.cells[1].textContent;
+        studentGradeInput.value = row.cells[2].textContent;
+        studentEmailInput.value = row.cells[3].textContent;
+        studentGenderInput.value = row.cells[4].textContent;
+    }
+
+    function deleteStudent(event) {
+        var row = event.target.parentElement.parentElement;
+        row.remove();
+        clearForm();
+    }
+
+    function clearForm() {
+        studentNameInput.value = '';
+        studentAgeInput.value = '';
+        studentGradeInput.value = '';
+        studentEmailInput.value = '';
+        studentGenderInput.value = '';
+        studentIndexInput.value = '';
+    }
+
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("student-table");
+        switching = true;
+        dir = "asc"; 
+
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[n];
+                y = rows[i + 1].getElementsByTagName("TD")[n];
+
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                switchcount++;
+            } else {
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
+
+</body>
+</html>

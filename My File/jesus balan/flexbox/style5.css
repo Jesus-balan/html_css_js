@@ -1,0 +1,28 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    font-family: 'Poppins';font-size: 22px;
+    background-color: darkmagenta;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+.Titlebar{
+    text-align: center;
+    color: aliceblue;
+    padding: 10px;
+}
+    .container {  
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    .container div{
+        color: white;
+        margin: 10px;
+        flex-basis: 25%;
+        flex-grow:2;
+
+    }

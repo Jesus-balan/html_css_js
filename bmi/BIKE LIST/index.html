@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Bike Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1 class="font">Bike Heaven</h1>
+
+  <div class="container-fluide">
+
+<div class="bike-info">
+<div id="results" style="display: none;">
+    <img id="bikeImage" src="kawa1-removebg-preview (1).png" alt="Bike Image">
+</div>
+    <div id="para" style="display: none;">
+    <h3>Kawasaki Ninja 900</h3>
+    <p>₹ 1,22,000</p>
+    <button class="buy-btn">Buy</button>
+</div>
+
+<div id="ninja" style="display: none;">
+    <img id="bikeImage" src="ninja-removebg-preview.png" alt="Bike Image">
+</div>
+    <div id="para" style="display: none;">
+    <h3>Kawasaki Ninja 650</h3>
+    <p>₹ 2,22,000</p>
+    <button class="buy-btn">Buy</button>
+</div>
+
+</div>
+<div id="container">
+    <form>
+        <label for="priceRange">Choose a price range:</label>
+        <select id="priceRange">
+            <option value="10000">0-10000</option>
+            <option value="20000">10001-20000</option>
+            <option value="30000">20001-30000</option>
+        </select>
+        <button type="submit" class="btn">Submit</button>
+    </form>
+</div>
+
+
+</div>
+
+
+<script src="script.js"></script>
+</body>
+</html>

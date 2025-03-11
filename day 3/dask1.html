@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Triangle Patterns</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        pre {
+            text-align: left;
+            display: inline-block;
+            margin: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Triangle Patterns</h2>
+
+    <h3>Right-Angled Triangle</h3>
+    <pre id="rightAngledTriangle"></pre>
+
+    <h3>Inverted Right-Angled Triangle</h3>
+    <pre id="invertedRightAngledTriangle"></pre>
+
+    <h3>Pyramid Triangle</h3>
+    <pre id="pyramidTriangle"></pre>
+
+    <h3>Inverted Pyramid Triangle</h3>
+    <pre id="invertedPyramidTriangle"></pre>
+
+    <script>
+        function printRightAngledTriangle(height) {
+            let triangle = '';
+            for (let i = 1; i <= height; i++) {
+                let line = '';
+                for (let j = 1; j <= i; j++) {
+                    line += ' * ';
+                }
+                triangle += line + '\n';
+            } 
+            return triangle;
+        }
+
+        function printInvertedRightAngledTriangle(height) {
+            let triangle = '';
+            for (let i = height; i >= 1; i--) {
+                let line = '';
+                for (let j = 1; j <= i; j++) {
+                    line += ' * ';
+                }
+                triangle += line + '\n';
+            }
+            return triangle;
+        }
+
+        function printPyramidTriangle(height) {
+            let triangle = '';
+            for (let i = 1; i <= height; i++) {
+                let line = '';
+                // Add spaces to center-align the triangle
+                for (let j = 1; j <= height - i; j++) {
+                    line += ' ';
+                }
+                for (let k = 1; k <= 2 * i - 1; k++) {
+                    line += '*';
+                }
+                triangle += line + '\n';
+            }
+            return triangle;
+        }
+
+        function printInvertedPyramidTriangle(height) {
+            let triangle = '';
+            for (let i = height; i >= 1; i--) {
+                let line = '';
+                // Add spaces to center-align the inverted triangle
+                for (let j = 1; j <= height - i; j++) {
+                    line += ' ';
+                }
+                for (let k = 1; k <= 2 * i - 1; k++) {
+                    line += '*';
+                }
+                triangle += line + '\n';
+            }
+            return triangle;
+        }
+
+        // Ex  ample usage:
+        const height = 5;
+        document.getElementById('rightAngledTriangle').textContent = printRightAngledTriangle(height);
+        document.getElementById('invertedRightAngledTriangle').textContent = printInvertedRightAngledTriangle(height);
+        document.getElementById('pyramidTriangle').textContent = printPyramidTriangle(height);
+        document.getElementById('invertedPyramidTriangle').textContent = printInvertedPyramidTriangle(height);
+    </script>
+</body>
+</html>

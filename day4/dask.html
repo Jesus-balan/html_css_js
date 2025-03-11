@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pattern Generation with JavaScript</title>
+    <style>
+        pre {
+            font-family: monospace;
+            white-space: pre-wrap;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pattern Generation with JavaScript</h1>
+
+    <h2>Pascal's Triangle</h2>
+    <pre id="pascalsTriangleOutput"></pre>
+
+    <h2>Floyd's Triangle</h2>
+    <pre id="floydsTriangleOutput"></pre>
+
+    <h2>Diamond Pattern</h2>
+    <pre id="diamondPatternOutput"></pre>
+
+    <script>
+        // Function to generate Pascal's Triangle
+        function generatePascalsTriangle(rows) {
+            let triangle = [];
+            for (let i = 0; i < rows; i++) {
+                triangle[i] = [];
+                console.log(triangle[i]);
+                triangle[i][0] = 1;
+                for (let j = 1; j < i; j++) {
+                    triangle[i][j] = triangle[i - 1][j - 1] + triangle[i - 1][j];
+                    console.log(triangle[j])
+                }
+                if (i > 0) {
+                    triangle[i][i] = 1;
+                    console.log(triangle[i])
+                }
+            }
+            return triangle;
+        }
+
+        // Function to generate Floyd's Triangle
+        function generateFloydsTriangle(rows) {
+            let triangle = [];
+            let counter = 1;
+            for (let i = 0; i < rows; i++) {
+                triangle[i] = [];
+                for (let j = 0; j <= i; j++) {
+                    triangle[i][j] = counter++;
+                }
+            }
+            return triangle;
+        }
+
+        // Function to generate Diamond Pattern
+        function generateDiamondPattern(height) {
+            let pattern = [];
+            let mid = Math.ceil(height / 2);
+            
+            // Upper part
+            for (let i = 1; i <= mid; i++) {
+                let row = ' '.repeat(mid - i) + '*'.repeat(2 * i - 1);
+                pattern.push(row);
+            }
+            
+            // Lower part
+            for (let i = mid - 1; i >= 1; i--) {
+                let row = ' '.repeat(mid - i) + '*'.repeat(2 * i - 1);
+                pattern.push(row);
+            }
+            
+            return pattern.join('\n');
+        }
+
+        // Example parameters
+        const numRows = 5;
+        const diamondHeight = 5;
+
+        // Generate Pascal's Triangle
+        let pascalsTriangle = generatePascalsTriangle(numRows);
+        document.getElementById('pascalsTriangleOutput').textContent = formatTriangleOutput(pascalsTriangle);
+
+        // Generate Floyd's Triangle
+        let floydsTriangle = generateFloydsTriangle(numRows);
+        document.getElementById('floydsTriangleOutput').textContent = formatTriangleOutput(floydsTriangle);
+
+        // Generate Diamond Pattern
+        let diamondPattern = generateDiamondPattern(diamondHeight);
+        document.getElementById('diamondPatternOutput').textContent = diamondPattern;
+
+        // Helper function to format triangle output
+        function formatTriangleOutput(triangle) {
+            return triangle.map(row => row.join(' ')).join('\n');
+        }
+    </script>
+</body>
+</html>
